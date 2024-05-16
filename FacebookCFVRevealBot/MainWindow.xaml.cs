@@ -359,6 +359,8 @@ namespace FacebookCFVRevealBot
                 Boolean failedToReach = false;
                 Int32 waitCount = 0;
 
+                ModifyTextblock("NEXTCHECKTIME", DateTime.Now.AddMinutes(Convert.ToDouble(interval_textBox.Text)).ToString("hh:mm:ss"));
+
                 await MoveToStep("BROWSERREFRESH", 100, Convert.ToInt32(loadWait_textBox.Text));
 
                 await MoveToStep("POSTTIME", 100, Convert.ToInt32(loadWait_textBox.Text));
@@ -427,9 +429,7 @@ namespace FacebookCFVRevealBot
                     await MoveToStep("BROWSERBACK", 100, 100);
                 }
 
-                ModifyTextblock("LASTCHECKTIME", DateTime.Now.ToString("hh:mm:ss"));
-
-                ModifyTextblock("NEXTCHECKTIME", DateTime.Now.AddMinutes(Convert.ToDouble(interval_textBox.Text)).ToString("hh:mm:ss"));
+                ModifyTextblock("LASTSUCCESSFULCHECKTIME", DateTime.Now.ToString("hh:mm:ss"));
 
                 lastPageRead = pageRead;
 

@@ -22,7 +22,7 @@
         <TextBlock x:Name="drevlinTab_textBlock" Tag="DrevlinTab" HorizontalAlignment="Left" Margin="10,110,0,0" TextWrapping="Wrap" Text="DREVLINTAB: " VerticalAlignment="Top"/>
         <TextBlock x:Name="chatTextbox_textBlock" Tag="ChatTextbox" HorizontalAlignment="Left" Margin="10,131,0,0" TextWrapping="Wrap" Text="CHATTEXTBOX: " VerticalAlignment="Top"/>
         <TextBlock x:Name="lastUri_textBlock" Tag="LASTURI"  HorizontalAlignment="Left" Margin="218,235,0,0" TextWrapping="Wrap" Text="LASTURI: " VerticalAlignment="Top" Height="105" Width="218"/>
-        <TextBlock x:Name="lastCheckTime_textBlock" Tag="LASTCHECKTIME" HorizontalAlignment="Left" Margin="222,466,0,0" TextWrapping="Wrap" Text="LASTCHECKTIME: " VerticalAlignment="Top"/>
+        <TextBlock x:Name="lastCheckTime_textBlock" Tag="LASTSUCCESSFULCHECKTIME" HorizontalAlignment="Left" Margin="222,466,0,0" TextWrapping="Wrap" Text="LASTSUCCESSFULCHECKTIME: " VerticalAlignment="Top"/>
         <TextBlock x:Name="nextCheckTime_textBlock" Tag="NEXTCHECKTIME" HorizontalAlignment="Left" Margin="222,482,0,0" TextWrapping="Wrap" Text="NEXTCHECKTIME: " VerticalAlignment="Top"/>
         <TextBlock x:Name="lastRevealTime_textBlock" Tag="LASTREVEALTIME" HorizontalAlignment="Left" Margin="222,501,0,0" TextWrapping="Wrap" Text="LASTREVEALTIME: " VerticalAlignment="Top"/>
         <TextBlock x:Name="currentClipboard_textBlock" Tag="CURRENTCLIPBOARD" HorizontalAlignment="Left" Margin="218,345,0,0" TextWrapping="Wrap" Text="CURRENTCLIPBOARD: " VerticalAlignment="Top" Height="105" Width="217"/>
