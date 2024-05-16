@@ -369,6 +369,10 @@ namespace FacebookCFVRevealBot
                         break;
                     }
 
+                    await MoveToStep("BROWSERREFRESH", 100, Convert.ToInt32(loadWait_textBox.Text));
+
+                    await MoveToStep("POSTTIME", 100, Convert.ToInt32(loadWait_textBox.Text));
+
                     waitCount = waitCount + 1;
 
                     await Task.Delay(100);
@@ -510,7 +514,11 @@ namespace FacebookCFVRevealBot
         {
             String fullMessage = message_textBox.Text + "\n" + Clipboard.GetText();
 
-            Clipboard.SetText(fullMessage);
+            while (Clipboard.GetText().Trim() != fullMessage.Trim())
+            {
+                Clipboard.SetText(fullMessage);
+                await Task.Delay(1);
+            }
 
             await Task.Delay(1000);
 
