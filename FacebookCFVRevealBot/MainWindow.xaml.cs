@@ -299,6 +299,7 @@ namespace FacebookCFVRevealBot
         }
 
         String lastPageRead { get; set; }
+        String drevlinBaseUri = @"https://www.facebook.com/blackrosemusketeer";
         Boolean checking = false;
         DispatcherTimer checkForReveals = new DispatcherTimer();
         String chromeBitmapPath = AppDomain.CurrentDomain.BaseDirectory + @"\\ChromeBitmap.jpg";
@@ -512,33 +513,36 @@ namespace FacebookCFVRevealBot
 
         private async Task PasteNewReveal()
         {
-            String fullMessage = message_textBox.Text + "\n" + Clipboard.GetText();
-
-            while (Clipboard.GetText().Trim() != fullMessage.Trim())
+            if (Clipboard.GetText().Trim() != drevlinBaseUri.Trim())
             {
-                Clipboard.SetText(fullMessage);
-                await Task.Delay(1);
+                String fullMessage = message_textBox.Text + "\n" + Clipboard.GetText();
+
+                while (Clipboard.GetText().Trim() != fullMessage.Trim())
+                {
+                    Clipboard.SetText(fullMessage);
+                    await Task.Delay(1);
+                }
+
+                await Task.Delay(1000);
+
+                SendKey(DirectXKeyStrokes.DIK_LCONTROL, false, InputType.Keyboard);
+                SendKey(DirectXKeyStrokes.DIK_V, false, InputType.Keyboard);
+
+                await Task.Delay(1000);
+
+                SendKey(DirectXKeyStrokes.DIK_LCONTROL, true, InputType.Keyboard);
+                SendKey(DirectXKeyStrokes.DIK_V, true, InputType.Keyboard);
+
+                await Task.Delay(1000);
+
+                SendKey(DirectXKeyStrokes.DIK_RETURN, false, InputType.Keyboard);
+
+                await Task.Delay(1000);
+
+                SendKey(DirectXKeyStrokes.DIK_RETURN, true, InputType.Keyboard);
+
+                await Task.Delay(1000);
             }
-
-            await Task.Delay(1000);
-
-            SendKey(DirectXKeyStrokes.DIK_LCONTROL, false, InputType.Keyboard);
-            SendKey(DirectXKeyStrokes.DIK_V, false, InputType.Keyboard);
-
-            await Task.Delay(1000);
-
-            SendKey(DirectXKeyStrokes.DIK_LCONTROL, true, InputType.Keyboard);
-            SendKey(DirectXKeyStrokes.DIK_V, true, InputType.Keyboard);
-
-            await Task.Delay(1000);
-
-            SendKey(DirectXKeyStrokes.DIK_RETURN, false, InputType.Keyboard);
-
-            await Task.Delay(1000);
-
-            SendKey(DirectXKeyStrokes.DIK_RETURN, true, InputType.Keyboard);
-
-            await Task.Delay(1000);
         }
 
         private async Task DoMouseClickAsync(Int32 clickDelay, Int32 waitDelay)
