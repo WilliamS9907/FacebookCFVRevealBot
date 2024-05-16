@@ -299,6 +299,7 @@ namespace FacebookCFVRevealBot
         }
 
         String lastPageRead { get; set; }
+        String lastUri = "";
         String drevlinBaseUri = @"https://www.facebook.com/blackrosemusketeer";
         Boolean checking = false;
         DispatcherTimer checkForReveals = new DispatcherTimer();
@@ -362,7 +363,8 @@ namespace FacebookCFVRevealBot
 
                 await MoveToStep("POSTTIME", 100, Convert.ToInt32(loadWait_textBox.Text));
 
-                while (String.IsNullOrEmpty(pageRead = GetPageRead(GetChromeHwnd())))
+                while (String.IsNullOrEmpty(pageRead = GetPageRead(GetChromeHwnd()))
+                       && checkForReveals.IsEnabled)
                 {
                     if (waitCount > 100)
                     {
@@ -392,10 +394,18 @@ namespace FacebookCFVRevealBot
                     return;
                 }
 
+                ModifyTextblock("CURRENTPAGEREAD", pageRead);
+
                 if (String.IsNullOrEmpty(lastPageRead))
                 {
                     //Set Initial Read
                     lastPageRead = pageRead;
+
+                    await MoveToStep("ADDRESSBAR", 100, 100);
+
+                    lastUri = Clipboard.GetText();
+
+                    ModifyTextblock("LASTURI", lastUri);
 
                     await MoveToStep("BROWSERBACK", 100, 100);
                 }
@@ -417,9 +427,13 @@ namespace FacebookCFVRevealBot
                     await MoveToStep("BROWSERBACK", 100, 100);
                 }
 
+                ModifyTextblock("LASTCHECKTIME", DateTime.Now.ToString("hh:mm:ss"));
+
+                ModifyTextblock("NEXTCHECKTIME", DateTime.Now.AddMinutes(Convert.ToDouble(interval_textBox.Text)).ToString("hh:mm:ss"));
+
                 lastPageRead = pageRead;
 
-                lastPageRead_textBlock.Text = lastPageRead;
+                ModifyTextblock("LASTPAGEREAD", lastPageRead);
             }
 
             checking = false;
@@ -427,6 +441,8 @@ namespace FacebookCFVRevealBot
 
         private async Task MoveToStep(String step, Int32 clickDelay, Int32 waitDelay)
         {
+            ModifyTextblock("CURRENTSTEP", step);
+
             switch (step.ToUpper().Trim())
             {
                 case "ADDRESSBAR":
@@ -436,6 +452,8 @@ namespace FacebookCFVRevealBot
                     await DoMouseClickAsync(clickDelay, waitDelay);
 
                     await HighlightAndCopy();
+
+                    ModifyTextblock("CURRENTCLIPBOARD", Clipboard.GetText());
                     break;
 
                 case "POSTTIME":
@@ -474,6 +492,8 @@ namespace FacebookCFVRevealBot
                     break;
 
                 case "CHATTEXTBOX":
+                    ModifyTextblock("LASTREVEALTIME", DateTime.Now.ToString("hh:mm:ss"));
+
                     SetCursorPos(Convert.ToInt32(currentLayout.chatTextbox.X),
                                  Convert.ToInt32(currentLayout.chatTextbox.Y));
 
@@ -513,8 +533,13 @@ namespace FacebookCFVRevealBot
 
         private async Task PasteNewReveal()
         {
-            if (Clipboard.GetText().Trim() != drevlinBaseUri.Trim())
+            if (Clipboard.GetText().Trim() != drevlinBaseUri.Trim()
+                && Clipboard.GetText().Trim() != lastUri.Trim())
             {
+                lastUri = Clipboard.GetText();
+
+                ModifyTextblock("LASTURI", lastUri);
+
                 String fullMessage = message_textBox.Text + "\n" + Clipboard.GetText();
 
                 while (Clipboard.GetText().Trim() != fullMessage.Trim())
@@ -623,16 +648,16 @@ namespace FacebookCFVRevealBot
                     return;
             }
 
-            ModifyCoordinateTextblock(coordsSelection_comboBox.Text.ToUpper().Trim(), "X:" + w32Mouse.X.ToString() + "," + "Y:" + w32Mouse.Y.ToString());
+            ModifyTextblock(coordsSelection_comboBox.Text.ToUpper().Trim(), "X:" + w32Mouse.X.ToString() + "," + "Y:" + w32Mouse.Y.ToString());
         }
 
-        private void ModifyCoordinateTextblock(String name, String coordinates)
+        private void ModifyTextblock(String name, String appendText)
         {
-            TextBlock tb = MainGrid.Children.OfType<TextBlock>().Where(x => x.Tag != null && x.Tag.ToString()!.ToUpper().Trim() == name).FirstOrDefault()!;
+            TextBlock tb = MainGrid.Children.OfType<TextBlock>().Where(x => x.Tag != null && x.Tag.ToString()!.ToUpper().Trim() == name.ToUpper().Trim()).FirstOrDefault()!;
 
             if (tb != null)
             {
-                tb.Text = name + ": " + coordinates;
+                tb.Text = name + ": " + appendText;
             }
         }
 
@@ -701,9 +726,6 @@ namespace FacebookCFVRevealBot
 
             using (TesseractEngine engine = new TesseractEngine(path, "eng", EngineMode.Default))
             {
-                //engine.SetVariable("tessedit_char_whitelist", "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-                //engine.SetVariable("tessedit_unrej_any_wd", true);
-
                 using (var page = engine.Process(Pix.LoadFromFile(chromeBitmapPath)))
                 {
                     bitmapText = page.GetText();
@@ -712,6 +734,7 @@ namespace FacebookCFVRevealBot
 
             return Regex.Replace(bitmapText, @"\s+", string.Empty);
         }
+
         private IntPtr GetChromeHwnd()
         {
             Process[] processes = Process.GetProcessesByName("chrome");

@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:FacebookCFVRevealBot"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="MainWindow" Height="667" Width="445">
+        Title="MainWindow" Height="846" Width="480">
     <Grid x:Name="MainGrid">
-        <Button x:Name="start_button" Content="Start" Click="Start" HorizontalAlignment="Left" Margin="158,353,0,0" VerticalAlignment="Top" Width="52"/>
+        <Button x:Name="start_button" Content="Start" Click="Start" HorizontalAlignment="Left" Margin="170,535,0,0" VerticalAlignment="Top" Width="52"/>
         <Button x:Name="getCoords_button" Content="M1" Click="getCoords_button_Click" HorizontalAlignment="Left" Margin="148,162,0,0" VerticalAlignment="Top" Width="36"/>
-        <Button x:Name="test_button" Content="Test" Click="test_button_Click" HorizontalAlignment="Left" Margin="215,353,0,0" VerticalAlignment="Top" Width="52"/>
+        <Button x:Name="test_button" Content="Test" Click="test_button_Click" HorizontalAlignment="Left" Margin="228,535,0,0" VerticalAlignment="Top" Width="52"/>
 
-        <TextBlock x:Name="error_textBlock" HorizontalAlignment="Center" Margin="0,226,0,0" TextAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="410" Foreground="Red"/>
+        <TextBlock x:Name="error_textBlock" HorizontalAlignment="Center" Margin="0,560,0,0" TextAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="410" Foreground="Red"/>
 
         <TextBlock x:Name="addressbar_textBlock" Tag="Addressbar" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="ADDRESSBAR: " VerticalAlignment="Top"/>
         <TextBlock x:Name="postTime_textBlock" Tag="PostTime" HorizontalAlignment="Left" Margin="10,31,0,0" TextWrapping="Wrap" Text="POSTTIME: " VerticalAlignment="Top"/>
@@ -21,8 +21,15 @@
         <TextBlock x:Name="messengerTab_textBlock" Tag="MessengerTab" HorizontalAlignment="Left" Margin="10,91,0,0" TextWrapping="Wrap" Text="MESSENGERTAB: " VerticalAlignment="Top"/>
         <TextBlock x:Name="drevlinTab_textBlock" Tag="DrevlinTab" HorizontalAlignment="Left" Margin="10,110,0,0" TextWrapping="Wrap" Text="DREVLINTAB: " VerticalAlignment="Top"/>
         <TextBlock x:Name="chatTextbox_textBlock" Tag="ChatTextbox" HorizontalAlignment="Left" Margin="10,131,0,0" TextWrapping="Wrap" Text="CHATTEXTBOX: " VerticalAlignment="Top"/>
+        <TextBlock x:Name="lastUri_textBlock" Tag="LASTURI"  HorizontalAlignment="Left" Margin="218,235,0,0" TextWrapping="Wrap" Text="LASTURI: " VerticalAlignment="Top" Height="105" Width="218"/>
+        <TextBlock x:Name="lastCheckTime_textBlock" Tag="LASTCHECKTIME" HorizontalAlignment="Left" Margin="222,466,0,0" TextWrapping="Wrap" Text="LASTCHECKTIME: " VerticalAlignment="Top"/>
+        <TextBlock x:Name="nextCheckTime_textBlock" Tag="NEXTCHECKTIME" HorizontalAlignment="Left" Margin="222,482,0,0" TextWrapping="Wrap" Text="NEXTCHECKTIME: " VerticalAlignment="Top"/>
+        <TextBlock x:Name="lastRevealTime_textBlock" Tag="LASTREVEALTIME" HorizontalAlignment="Left" Margin="222,501,0,0" TextWrapping="Wrap" Text="LASTREVEALTIME: " VerticalAlignment="Top"/>
+        <TextBlock x:Name="currentClipboard_textBlock" Tag="CURRENTCLIPBOARD" HorizontalAlignment="Left" Margin="218,345,0,0" TextWrapping="Wrap" Text="CURRENTCLIPBOARD: " VerticalAlignment="Top" Height="105" Width="217"/>
+        <TextBlock x:Name="currentStep_textBlock" Tag="CURRENTSTEP" HorizontalAlignment="Left" Margin="10,350,0,0" TextWrapping="Wrap" Text="CURRENTSTEP: " VerticalAlignment="Top"/>
+        <TextBlock x:Name="currenPageRead_textBlock_Copy" Tag="CURRENTPAGEREAD"  HorizontalAlignment="Left" Margin="218,118,0,0" TextWrapping="Wrap" Text="CURRENTPAGEREAD: " VerticalAlignment="Top" Height="105" Width="217"/>
 
-        <TextBlock x:Name="lastPageRead_textBlock" HorizontalAlignment="Left" Margin="215,10,0,0" TextWrapping="Wrap" Text="${LastPageRead}" VerticalAlignment="Top" Height="328" Width="205"/>
+        <TextBlock x:Name="lastPageRead_textBlock" Tag="LASTPAGEREAD" HorizontalAlignment="Left" Margin="222,5,0,0" TextWrapping="Wrap" Text="LASTPAGEREAD: " VerticalAlignment="Top" Height="108" Width="206"/>
 
         <ComboBox x:Name="coordsSelection_comboBox" HorizontalAlignment="Left" Margin="9,161,0,0" VerticalAlignment="Top" Width="134">
             <ComboBoxItem Content="Addressbar"/>
@@ -40,17 +47,17 @@
         <TextBox x:Name="rightDiff_textBox" HorizontalAlignment="Left" Margin="49,256,0,0" TextWrapping="Wrap" Text="-900" VerticalAlignment="Top" Width="135"/>
         <TextBox x:Name="bottomDiff_textBox" HorizontalAlignment="Left" Margin="60,279,0,0" TextWrapping="Wrap" Text="1050" VerticalAlignment="Top" Width="124"/>
         <TextBox x:Name="message_textBox" HorizontalAlignment="Left" Margin="68,324,0,0" Text="New Reveal: " TextWrapping="Wrap" VerticalAlignment="Top" Width="116"/>
-        <TextBox x:Name="loadWait_textBox" HorizontalAlignment="Left" Margin="74,301,0,0" Text="10000" TextWrapping="Wrap" VerticalAlignment="Top" Width="110"/>
+        <TextBox x:Name="loadWait_textBox" HorizontalAlignment="Left" TextWrapping="Wrap" Margin="74,301,0,0" Text="10000" VerticalAlignment="Top" Width="110"/>
 
-        <Image x:Name="bitMap_image" HorizontalAlignment="Left" Height="264" Margin="10,396,0,0" RenderOptions.BitmapScalingMode="Fant" VerticalAlignment="Top" Width="393"/>
+        <Image x:Name="bitMap_image" HorizontalAlignment="Left" Height="264" Margin="10,578,0,0" RenderOptions.BitmapScalingMode="Fant" VerticalAlignment="Top" Width="393"/>
 
-        <TextBlock x:Name="interval_texstBlock" HorizontalAlignment="Left" Margin="10,189,0,0" TextWrapping="Wrap" Text="Interval: " VerticalAlignment="Top" Width="44"/>
-        <TextBlock x:Name="left_texstBlock" HorizontalAlignment="Left" Margin="10,212,0,0" TextWrapping="Wrap" Text="Left: " VerticalAlignment="Top" Width="24"/>
-        <TextBlock x:Name="top_texstBlock" HorizontalAlignment="Left" Margin="10,235,0,0" TextWrapping="Wrap" Text="Top: " VerticalAlignment="Top" Width="24"/>
-        <TextBlock x:Name="right_texstBlock" HorizontalAlignment="Left" Margin="10,257,0,0" TextWrapping="Wrap" Text="Right: " VerticalAlignment="Top" Width="32"/>
-        <TextBlock x:Name="bottom_texstBlock" HorizontalAlignment="Left" Margin="10,280,0,0" TextWrapping="Wrap" Text="Bottom: " VerticalAlignment="Top" Width="44"/>
-        <TextBlock x:Name="message_texstBlock" HorizontalAlignment="Left" Margin="10,325,0,0" TextWrapping="Wrap" Text="Message: " VerticalAlignment="Top" Width="53"/>
-        <TextBlock x:Name="loadWait_texstBlock" HorizontalAlignment="Left" Margin="10,302,0,0" TextWrapping="Wrap" Text="Load Wait: " VerticalAlignment="Top" Width="58"/>
+        <TextBlock x:Name="interval_textBlock" HorizontalAlignment="Left" Margin="10,189,0,0" TextWrapping="Wrap" Text="Interval: " VerticalAlignment="Top" Width="44"/>
+        <TextBlock x:Name="left_textBlock" HorizontalAlignment="Left" Margin="10,212,0,0" TextWrapping="Wrap" Text="Left: " VerticalAlignment="Top" Width="24"/>
+        <TextBlock x:Name="top_textBlock" HorizontalAlignment="Left" Margin="10,235,0,0" TextWrapping="Wrap" Text="Top: " VerticalAlignment="Top" Width="24"/>
+        <TextBlock x:Name="right_textBlock" HorizontalAlignment="Left" Margin="10,257,0,0" TextWrapping="Wrap" Text="Right: " VerticalAlignment="Top" Width="32"/>
+        <TextBlock x:Name="bottom_textBlock" HorizontalAlignment="Left" Margin="10,280,0,0" TextWrapping="Wrap" Text="Bottom: " VerticalAlignment="Top" Width="44"/>
+        <TextBlock x:Name="message_textBlock" HorizontalAlignment="Left" Margin="10,325,0,0" TextWrapping="Wrap" Text="Message: " VerticalAlignment="Top" Width="53"/>
+        <TextBlock x:Name="loadWait_textBlock" HorizontalAlignment="Left" Margin="10,302,0,0" TextWrapping="Wrap" Text="Load Wait: " VerticalAlignment="Top" Width="58"/>
 
     </Grid>
 </Window>
