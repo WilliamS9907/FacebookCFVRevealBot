@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "QcJeFwBLVEZ7vVgFQdGRIQoX2Q5KYzadjFp8BrKqJPe+8LgxjEfxZY84bhwgFQz0c8u3nFuR7pT+w32PJv1dGQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Will\\source\\repos\\FacebookCFVRevealBot\\FacebookCFVRevealBot\\FacebookCFVRevealBot.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Will\\.nuget\\packages\\microsoft.win32.systemevents\\8.0.0\\microsoft.win32.systemevents.8.0.0.nupkg.sha512",
+    "C:\\Users\\Will\\.nuget\\packages\\system.drawing.common\\8.0.5\\system.drawing.common.8.0.5.nupkg.sha512",
+    "C:\\Users\\Will\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
+    "C:\\Users\\Will\\.nuget\\packages\\tesseract\\5.2.0\\tesseract.5.2.0.nupkg.sha512"
+  ],
+  "logs": []
+}
