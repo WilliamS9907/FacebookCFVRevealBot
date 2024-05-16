@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QcJeFwBLVEZ7vVgFQdGRIQoX2Q5KYzadjFp8BrKqJPe+8LgxjEfxZY84bhwgFQz0c8u3nFuR7pT+w32PJv1dGQ==",
+  "dgSpecHash": "XO6k9RXMFUBujFoDj5SOSNCQf1X8z1cnsO86GcTZbEwwUrPmcIuX8Wn6Z2lHodp/DQxkWK0BsDVabM5MawoU8Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Will\\source\\repos\\FacebookCFVRevealBot\\FacebookCFVRevealBot\\FacebookCFVRevealBot.csproj",
+  "projectFilePath": "C:\\Users\\Will\\Desktop\\CFVRevealBot\\FacebookCFVRevealBot\\FacebookCFVRevealBot\\FacebookCFVRevealBot.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Will\\.nuget\\packages\\microsoft.win32.systemevents\\8.0.0\\microsoft.win32.systemevents.8.0.0.nupkg.sha512",
     "C:\\Users\\Will\\.nuget\\packages\\system.drawing.common\\8.0.5\\system.drawing.common.8.0.5.nupkg.sha512",
