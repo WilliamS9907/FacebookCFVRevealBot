@@ -488,22 +488,22 @@ namespace FacebookCFVRevealBot
             SendKey(DirectXKeyStrokes.DIK_LCONTROL, false, InputType.Keyboard);
             SendKey(DirectXKeyStrokes.DIK_A, false, InputType.Keyboard);
 
-            await Task.Delay(50);
+            await Task.Delay(1000);
 
             SendKey(DirectXKeyStrokes.DIK_LCONTROL, true, InputType.Keyboard);
             SendKey(DirectXKeyStrokes.DIK_A, true, InputType.Keyboard);
 
-            await Task.Delay(50);
+            await Task.Delay(1000);
 
             SendKey(DirectXKeyStrokes.DIK_LCONTROL, false, InputType.Keyboard);
             SendKey(DirectXKeyStrokes.DIK_C, false, InputType.Keyboard);
 
-            await Task.Delay(50);
+            await Task.Delay(1000);
 
             SendKey(DirectXKeyStrokes.DIK_LCONTROL, true, InputType.Keyboard);
             SendKey(DirectXKeyStrokes.DIK_C, true, InputType.Keyboard);
 
-            await Task.Delay(50);
+            await Task.Delay(1000);
         }
 
         private async Task PasteNewReveal()
@@ -512,25 +512,25 @@ namespace FacebookCFVRevealBot
 
             Clipboard.SetText(fullMessage);
 
-            await Task.Delay(100);
+            await Task.Delay(1000);
 
             SendKey(DirectXKeyStrokes.DIK_LCONTROL, false, InputType.Keyboard);
             SendKey(DirectXKeyStrokes.DIK_V, false, InputType.Keyboard);
 
-            await Task.Delay(50);
+            await Task.Delay(1000);
 
             SendKey(DirectXKeyStrokes.DIK_LCONTROL, true, InputType.Keyboard);
             SendKey(DirectXKeyStrokes.DIK_V, true, InputType.Keyboard);
 
-            await Task.Delay(50);
+            await Task.Delay(1000);
 
             SendKey(DirectXKeyStrokes.DIK_RETURN, false, InputType.Keyboard);
 
-            await Task.Delay(50);
+            await Task.Delay(1000);
 
             SendKey(DirectXKeyStrokes.DIK_RETURN, true, InputType.Keyboard);
 
-            await Task.Delay(50);
+            await Task.Delay(1000);
         }
 
         private async Task DoMouseClickAsync(Int32 clickDelay, Int32 waitDelay)
